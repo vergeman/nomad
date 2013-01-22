@@ -1,7 +1,8 @@
+= provide(:app_title,"Nomad")
 !!!
 %html
   %head
-    %title= Nomad
+    %title= yield(:title)
     %meta{ :name => "viewport", :content => "width=device-width, intial-scale=1"}
     %meta{:charset => "utf-8"}
     %meta{:content => "", :name => "description"}
@@ -11,5 +12,9 @@
     = csrf_meta_tags
     = render 'layouts/shim'
   %body
-    = yield
+    %nav
+      = render 'layouts/nav'
+    %section.container
+      = yield
+  %footer
 
