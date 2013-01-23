@@ -4,25 +4,22 @@
     window.fbAsyncInit = function() {
         FB.init({
               appId      : #{ENV['FB_ID']}, // App ID
-              //channelUrl : '//arcane-scrubland-7022.herokuapp.com/channel.html', // Channel File
-              channelUrl : '//ec2-54-234-26-29.compute-1.amazonaws.com:9000',
+              channelUrl : '//ec2-54-234-26-29.compute-1.amazonaws.com:9000/channel.html', // Channel File
               status     : true, // check login status
               cookie     : true, // enable cookies to allow the server to access the session
               xfbml      : true  // parse XFBML
                 });
 
-                
-                
+                                
         FB.getLoginStatus(function(response) {
         console.log(response);
-        if (response.status === 'connected') {
         // connected
+        if (response.status === 'connected') {
+        testAPIconnected();
         console.log("connected");
-
         } else if (response.status === 'not_authorized') {
         console.log("not_authorized");
         login();
-        //window.location.replace("http://stackoverflow.com");
         } else {
         console.log("not_logged_in");
         login();
@@ -49,7 +46,9 @@
        function login() {
        FB.login(function(response) {
        if (response.authResponse) {
+
        testAPI();
+       window.location.reload();
        } else {
        // cancelled
        }
@@ -57,6 +56,13 @@
        }, {scope: 'user_hometown, friends_hometown, user_location, friends_location, user_status, friends_status, user_photos, friends_photos, user_about_me, user_checkins, friends_checkins'});
        }
 
+       function testAPIconnected() {
+       console.log('You\'re connected! Fetching your information.... ');       
+       FB.api('/me', function(response) {
+       console.log('Good to see you, ' + response.name + '.');
+       });
+       }
+       
        function testAPI() {
        console.log('Welcome!  Fetching your information.... ');       
        FB.api('/me', function(response) {
