@@ -3,8 +3,8 @@
   // Additional JS functions here
     window.fbAsyncInit = function() {
         FB.init({
-              appId      : ENV['FB_ID'], // App ID
-              //channelUrl : '//arcane-scrubland-7022.herokuapp.com/channel.html', // Channel File
+              appId      : #{ENV['FB_ID']}, // App ID
+              channelUrl : '//arcane-scrubland-7022.herokuapp.com/channel.html', // Channel File
               status     : true, // check login status
               cookie     : true, // enable cookies to allow the server to access the session
               xfbml      : true  // parse XFBML
