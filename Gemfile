@@ -38,6 +38,8 @@ gem 'jquery-rails'
 
 gem 'bootstrap-sass'
 
+gem 'koala'
+
 gem 'thin'
 
 # To use ActiveModel has_secure_password
