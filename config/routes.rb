@@ -1,5 +1,7 @@
 Nomad::Application.routes.draw do
 
+
+
   root :to => 'static_pages#home'
   
   #STATICS
@@ -8,6 +10,9 @@ Nomad::Application.routes.draw do
 
   #MAP
   match '/map', to: 'map#home'
+
+  #SESSIONS
+  match '/callback', to: 'sessions#create'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

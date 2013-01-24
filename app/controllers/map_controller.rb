@@ -1,24 +1,23 @@
-require 'koala'
-
-
 class MapController < ApplicationController
-  before_filter :parse_facebook_cookies
 
-def home  
-  puts "MAP HERE"
-  @access_token = @facebook_cookies["access_token"]
-  puts "MAP ACCESS_TOKEN: #{@access_token}"
+def home
 
-  unless @access_token.nil?
-    puts "MAP HAS ACCESS TOKEN"
-    @graph = Koala::Facebook::GraphAPI.new(@access_token)
+  if current_user
 
-    profile = @graph.get_object("me")
-    friends = @graph.get_connections("me", "friends")
+    @access_token  = @current_user.access_token
+    begin
+      @graph = Koala::Facebook::GraphAPI.new(@access_token)
 
-    puts @graph
-    puts profile
-    puts friends
+      profile = @graph.get_object("me")
+      friends = @graph.get_connections("me", "friends")
+      puts profile
+      puts friends.length
+
+    rescue
+      session[:user_id] = nil
+      redirect_to root_path
+    end
+
   else
     redirect_to root_path
   end
