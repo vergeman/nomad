@@ -11,4 +11,7 @@
 
 class User < ActiveRecord::Base
   attr_accessible :access_token, :uid
+  has_many :friends
+
+  validates :uid, uniqueness: true
 end

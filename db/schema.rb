@@ -11,13 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124023621) do
+ActiveRecord::Schema.define(:version => 20130124170123) do
+
+  create_table "friends", :force => true do |t|
+    t.integer  "user_id",              :limit => 8
+    t.string   "name"
+    t.integer  "current_location_id"
+    t.integer  "hometown_location_id"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.integer  "uid",                  :limit => 8
+  end
+
+  create_table "locations", :force => true do |t|
+    t.integer  "loc_id",     :limit => 8
+    t.string   "name"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.integer  "zipcode"
+    t.decimal  "lat"
+    t.decimal  "long"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
 
   create_table "users", :force => true do |t|
-    t.integer  "uid"
+    t.integer  "uid",          :limit => 8
     t.string   "access_token"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
 end
