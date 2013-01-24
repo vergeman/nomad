@@ -34,6 +34,9 @@ def home
           loc = Location.find_or_create_by_loc_id(:loc_id => cl['id'], :name => cl['name'], :city => cl['city'], :state => cl['state'], :country => cl['country'], :zipcode => cl['zip'])
 
           friend.current_location = loc
+
+          puts "HTTP: "
+          puts loc.get_geo(cl['city'], cl['state'], cl['country'])
         end
 
         # Hometown location friends
@@ -43,6 +46,8 @@ def home
 
           friend.hometown_location = loc
         end
+
+
 
         # f = Friend.find_or_create_by_user_id(friend)
 

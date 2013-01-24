@@ -39,6 +39,8 @@ gem 'jquery-rails'
 
 gem 'bootstrap-sass'
 
+gem 'httpclient'
+
 gem 'koala'
 
 gem 'thin'
