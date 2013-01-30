@@ -17,22 +17,16 @@
 
 require 'httpclient'
 require 'json'
+
+require 'koala'
 class Location < ActiveRecord::Base
 
   attr_accessible :city, :country, :lat, :loc_id, :long, :name, :state, :zipcode
   has_many :friends
 
   validates :loc_id, uniqueness: true
+  validates :loc_id, :name, :lat, :long, :presence => true
 
-  def get_geo(city, state, country)
-    client = HTTPClient.new()
-    puts "#{city}, #{state}"
+#probably move this to a delayed job somewhere
 
-    url =  URI.encode("http://query.yahooapis.com/v1/public/yql?q=select centroid from geo.places where text = \"#{city}, #{state}\" LIMIT 1&format=json")
-
-
-    result = client.get url
-
-    JSON.parse(result.content)
-  end
 end

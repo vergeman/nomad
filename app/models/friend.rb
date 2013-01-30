@@ -19,6 +19,8 @@ class Friend < ActiveRecord::Base
   belongs_to :current_location, :class_name => 'Location', :foreign_key => 'current_location_id'
   belongs_to :hometown_location, :class_name => 'Location', :foreign_key => 'hometown_location_id'
 
+  validates :user_id, :uid, :name, :presence => true
+
 #  we'll keep this simple for now, handle enforcing
 #  mutual friends later
 #  validates :uid, uniqueness: true
