@@ -1,9 +1,8 @@
-class FriendLocationSave
-  attr_accessor :results, :locations
+class FriendLocationSaveJob
+  attr_accessor :results, :locations, :current_user
 
-  #== Query data, setup, parse, and save ==
-  def initialize(current_user)
-
+  #==bg job work details==
+  def run
     #==query
     q = Query.new(current_user.access_token)
 
@@ -22,10 +21,16 @@ class FriendLocationSave
     build_and_save_friends(current_user)
 
     return true
+
+  end
+
+  #== Query data, setup, parse, and save ==
+  def initialize(current_user)
+    @current_user = current_user
   end
 
 
-
+  private
 
   def parse_location_result(query_name)
     #===unroll queries====
