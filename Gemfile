@@ -43,6 +43,9 @@ gem 'httpclient'
 
 gem 'koala'
 
+
+gem 'delayed_job_active_record'
+
 gem 'thin'
 
 # To use ActiveModel has_secure_password
