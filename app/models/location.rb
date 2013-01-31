@@ -15,10 +15,6 @@
 #  updated_at :datetime         not null
 #
 
-require 'httpclient'
-require 'json'
-
-require 'koala'
 class Location < ActiveRecord::Base
 
   attr_accessible :city, :country, :lat, :loc_id, :long, :name, :state, :zipcode
@@ -26,7 +22,5 @@ class Location < ActiveRecord::Base
 
   validates :loc_id, uniqueness: true
   validates :loc_id, :name, :lat, :long, :presence => true
-
-#probably move this to a delayed job somewhere
 
 end
